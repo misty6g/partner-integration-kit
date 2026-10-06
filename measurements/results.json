@@ -1,0 +1,60 @@
+{
+  "measured_at": "2026-10-06T15:36:39Z",
+  "python": "3.12.3",
+  "platform": "Linux-6.12.94+-x86_64-with-glibc2.39",
+  "pytest": {
+    "command": "python -m pytest --cov=src --cov-report=term -o addopts=",
+    "passed": 46,
+    "coverage_percent": 93.0,
+    "coverage_includes_branches": true
+  },
+  "typescript_webhook_tests": {
+    "command": "npm test",
+    "working_directory": "sdk/typescript",
+    "tests": 4,
+    "passed": 4
+  },
+  "retrieval": {
+    "command": "python -m pik_bot",
+    "cases": 16,
+    "top1_hits": 16,
+    "top3_hits": 16,
+    "top1_accuracy": 1.0,
+    "top3_accuracy": 1.0,
+    "labeled_set": "src/pik_bot/eval_set.json"
+  },
+  "webhooks": {
+    "command": "python scripts/measure.py",
+    "deliveries": 30,
+    "injection": "HTTP 500 on attempt 1 for every delivery; 6 of 30 (indexes 0,5,10,15,20,25) return HTTP 500 on every attempt",
+    "max_attempts": 5,
+    "backoff_base_seconds": 0.05,
+    "succeeded": 24,
+    "dead_letter": 6,
+    "success_rate": 0.8,
+    "signature_checks_passed": 78,
+    "signature_checks_failed": 0,
+    "median_attempts_when_succeeded": 2.0,
+    "worker_ticks": 14,
+    "elapsed_seconds": 2.524
+  },
+  "latency": {
+    "command": "uvicorn on 127.0.0.1:8411, one process, SQLite",
+    "get_orders": {
+      "samples": 200,
+      "errors": 0,
+      "concurrency": 8,
+      "warmup_excluded": 20,
+      "p50_ms": 30.322,
+      "p95_ms": 63.363
+    },
+    "post_orders": {
+      "samples": 100,
+      "errors": 0,
+      "concurrency": 8,
+      "warmup_excluded": 20,
+      "p50_ms": 58.153,
+      "p95_ms": 93.588
+    }
+  }
+}

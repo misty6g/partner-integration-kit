@@ -1,0 +1,17 @@
+.git
+.venv
+**/__pycache__
+**/*.pyc
+.pytest_cache
+.coverage
+htmlcov
+sdk/python/generated
+sdk/typescript/generated
+node_modules
+tests
+scripts
+examples
+.github
+openapi-generator-cli.jar
+.openapi-generator
+*.db

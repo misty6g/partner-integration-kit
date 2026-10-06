@@ -1,0 +1,37 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8400:8400"
+    environment:
+      PIK_DATABASE_URL: sqlite:////data/pik.db
+      PIK_SEED_DEMO: "1"
+    volumes:
+      - pikdata:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8400/v1/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 5s
+
+  worker:
+    build: .
+    command: ["python", "-m", "pik_api.worker"]
+    environment:
+      PIK_DATABASE_URL: sqlite:////data/pik.db
+      PIK_SEED_DEMO: "0"
+    volumes:
+      - pikdata:/data
+    depends_on:
+      api:
+        condition: service_healthy
+
+  redis:
+    image: redis:7-alpine
+    profiles: ["redis"]
+    ports:
+      - "6379:6379"
+
+volumes:
+  pikdata:
