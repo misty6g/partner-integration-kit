@@ -155,7 +155,7 @@ The labeled set is `src/pik_bot/eval_set.json`: 16 queries, mostly the API's own
 Recorded by `python scripts/measure.py` on 2026-10-06 against Python 3.12.3 (`Linux-6.12.94+`). The raw output is `measurements/results.json`.
 
 | Measurement | Result | How |
-| --- | --- |
+| --- | --- | --- |
 | Pytest | 46 passed | `python -m pytest --cov=src --cov-report=term -o addopts=` |
 | Coverage | 93% | Coverage.py branch coverage over `src/` (statements 1503, missed 70, branches 258, partial 41) |
 | TypeScript verifier | 4 passed | `npm test` in `sdk/typescript` (node:test) |
