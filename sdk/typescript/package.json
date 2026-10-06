@@ -1,0 +1,10 @@
+{
+  "name": "@partner-integration-kit/webhooks",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Handwritten webhook signature helper. The generated REST client is added under generated/.",
+  "scripts": {
+    "test": "node --experimental-strip-types --test test/webhooks.test.ts"
+  }
+}
