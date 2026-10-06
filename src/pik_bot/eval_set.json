@@ -1,0 +1,82 @@
+[
+  {
+    "id": "auth-invalid",
+    "query": "HTTP 401 authentication_error invalid_api_key The API key was not recognized.",
+    "expected": "authentication.md#invalid-api-key"
+  },
+  {
+    "id": "auth-missing",
+    "query": "401 missing_api_key Send the partner API key in the X-API-Key header.",
+    "expected": "authentication.md#missing-api-key"
+  },
+  {
+    "id": "auth-revoked",
+    "query": "401 revoked_api_key This API key has been revoked. Issue a new key for the partner.",
+    "expected": "authentication.md#revoked-api-key"
+  },
+  {
+    "id": "rate-limit",
+    "query": "429 rate_limit_exceeded Too many requests. Retry-After 12 and X-RateLimit-Remaining is 0.",
+    "expected": "rate-limits.md#rate-limit-exceeded"
+  },
+  {
+    "id": "idem-conflict",
+    "query": "409 idempotency_error idempotency_key_conflict This Idempotency-Key was already used with a different request.",
+    "expected": "idempotency.md#idempotency-key-conflict"
+  },
+  {
+    "id": "idem-progress",
+    "query": "409 idempotency_in_progress A request with this Idempotency-Key is still in progress.",
+    "expected": "idempotency.md#idempotency-request-in-progress"
+  },
+  {
+    "id": "idem-invalid",
+    "query": "400 invalid_idempotency_key Idempotency-Key must be 1-200 characters letters digits underscore hyphen colon or dot.",
+    "expected": "idempotency.md#invalid-idempotency-key"
+  },
+  {
+    "id": "sig-mismatch",
+    "query": "Our receiver rejected the callback because the HMAC did not match. signature_mismatch on Pik-Signature v1. We re-serialized the JSON body before verifying.",
+    "expected": "webhooks.md#signature-mismatch"
+  },
+  {
+    "id": "sig-stale",
+    "query": "timestamp_expired Signature timestamp is outside the 300s replay window. Clock skew on the webhook receiver.",
+    "expected": "webhooks.md#timestamp-outside-tolerance"
+  },
+  {
+    "id": "sig-malformed",
+    "query": "malformed_signature Missing Pik-Signature header. The proxy stripped it and v1 was empty.",
+    "expected": "webhooks.md#malformed-signature-header"
+  },
+  {
+    "id": "dlq",
+    "query": "Webhook delivery status dead_letter attempt_count 5 last_error HTTP 500 retries exhausted.",
+    "expected": "webhooks.md#dead-letter-deliveries"
+  },
+  {
+    "id": "replay",
+    "query": "409 delivery_in_flight This delivery is in flight. Wait before calling the replay endpoint.",
+    "expected": "webhooks.md#replaying-a-delivery"
+  },
+  {
+    "id": "cursor",
+    "query": "400 invalid_cursor The starting_after cursor does not match a resource for this partner.",
+    "expected": "pagination.md#invalid-pagination-cursor"
+  },
+  {
+    "id": "order-missing",
+    "query": "404 order_not_found No such order. The ord_ id came back from a different partner account.",
+    "expected": "orders.md#order-not-found"
+  },
+  {
+    "id": "transition",
+    "query": "409 invalid_order_transition Cannot change an order from fulfilled to cancelled.",
+    "expected": "orders.md#invalid-order-transition"
+  },
+  {
+    "id": "external-id",
+    "query": "409 duplicate_external_id An order with this external_id already exists for the partner.",
+    "expected": "orders.md#duplicate-external-id"
+  }
+]
