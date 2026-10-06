@@ -116,7 +116,7 @@ Webhook URLs must be absolute `http` or `https` with no userinfo. Link-local add
 - Python: `sdk/python/generated` (`pik_client`, urllib3)
 - TypeScript: `sdk/typescript/generated` (`typescript-fetch`)
 
-The generator's TypeScript `ToJSON` helpers spread the input object and then add snake_case keys, which sends both `unitAmount` and `unit_amount`. The script deletes that spread so the body matches the API.
+The generator's TypeScript `ToJSON` helpers spread the input object and then add snake_case keys, which sends both `unitAmount` and `unit_amount`. The script deletes that spread so the body matches the API. It also splits the generated Python `WebhooksApi` class into `webhooks_api.py` and `webhooks_api_rest.py`. `WebhooksApi` subclasses `WebhooksApiRest`, so the public client is unchanged.
 
 Handwritten verifiers, covered by one shared HMAC vector:
 
@@ -155,7 +155,7 @@ The labeled set is `src/pik_bot/eval_set.json`: 16 queries, mostly the API's own
 Recorded by `python scripts/measure.py` on 2026-10-06 against Python 3.12.3 (`Linux-6.12.94+`). The raw output is `measurements/results.json`.
 
 | Measurement | Result | How |
-| --- | --- | --- |
+| --- | --- |
 | Pytest | 46 passed | `python -m pytest --cov=src --cov-report=term -o addopts=` |
 | Coverage | 93% | Coverage.py branch coverage over `src/` (statements 1503, missed 70, branches 258, partial 41) |
 | TypeScript verifier | 4 passed | `npm test` in `sdk/typescript` (node:test) |
